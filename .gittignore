@@ -1,0 +1,33 @@
+# Java compiled files
+*.class
+
+# Logs
+*.log
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+
+# IntelliJ / VS Code / Eclipse
+.idea/
+.vscode/
+*.iml
+.settings/
+.project
+.classpath
+
+# Build folders
+bin/
+build/
+target/
+out/
+
+# Tomcat temp / generated
+work/
+temp/
+
+# Libraries if you do not want to upload them
+# WEB-INF/lib/
+
+# Environment / secrets
+.env

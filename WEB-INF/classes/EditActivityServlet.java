@@ -1,0 +1,83 @@
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import activities.db.DBInteraction;
+
+public class EditActivityServlet extends HttpServlet {
+
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
+
+        HttpSession session = req.getSession(false);
+        if (session == null || session.getAttribute("manager") == null) {
+            res.sendRedirect(req.getContextPath() + "/managerLogin.jsp");
+            return;
+        }
+
+        String idStr = req.getParameter("id");
+        String name = req.getParameter("name");
+        String description = req.getParameter("description");
+        String initial = req.getParameter("initial");
+        String costStr = req.getParameter("cost");
+        String pavname = req.getParameter("pavname");
+        String totalStr = req.getParameter("total");
+        String occupiedStr = req.getParameter("occupied");
+
+        if (idStr == null || idStr.trim().equals("") ||
+            name == null || name.trim().equals("") ||
+            description == null || description.trim().equals("") ||
+            initial == null || initial.trim().equals("") ||
+            costStr == null || costStr.trim().equals("") ||
+            pavname == null || pavname.trim().equals("") ||
+            totalStr == null || totalStr.trim().equals("") ||
+            occupiedStr == null || occupiedStr.trim().equals("")) {
+
+            req.setAttribute("error", "All fields are required.");
+            RequestDispatcher rd = req.getRequestDispatcher("editActivity.jsp");
+            rd.forward(req, res);
+            return;
+        }
+
+        DBInteraction db = null;
+
+        try {
+            int id = Integer.parseInt(idStr);
+            float cost = Float.parseFloat(costStr);
+            int total = Integer.parseInt(totalStr);
+            int occupied = Integer.parseInt(occupiedStr);
+
+            if (occupied > total) {
+                req.setAttribute("error", "Occupied places cannot be greater than total places.");
+                RequestDispatcher rd = req.getRequestDispatcher("editActivity.jsp");
+                rd.forward(req, res);
+                return;
+            }
+
+            db = new DBInteraction();
+            db.updateact(id, name, description, initial, cost, pavname, total, occupied);
+
+            res.sendRedirect(req.getContextPath() + "/managerList");
+
+        } catch (NumberFormatException e) {
+            req.setAttribute("error", "ID, cost, total places and occupied places must be numeric.");
+            RequestDispatcher rd = req.getRequestDispatcher("editActivity.jsp");
+            rd.forward(req, res);
+        } catch (Exception e) {
+            req.setAttribute("error", "Error editing activity: " + e.getMessage());
+            RequestDispatcher rd = req.getRequestDispatcher("editActivity.jsp");
+            rd.forward(req, res);
+        } finally {
+            if (db != null) {
+                try {
+                    db.close();
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
+        doPost(req, res);
+    }
+}
