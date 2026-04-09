@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>User Registration</title>
+<meta charset="UTF-8">
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -52,6 +53,8 @@
 <div class="box">
     <h1>User Registration Form</h1>
 
+    <%@ page import="java.net.URLDecoder" %>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%
     String name = "";
     String surname = "";
@@ -64,12 +67,12 @@
     if (cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
             Cookie c = cookies[i];
-            if (c.getName().equals("reg_name")) name = c.getValue();
-            else if (c.getName().equals("reg_surname")) surname = c.getValue();
-            else if (c.getName().equals("reg_address")) address = c.getValue();
-            else if (c.getName().equals("reg_phone")) phone = c.getValue();
-            else if (c.getName().equals("reg_login")) login = c.getValue();
-            else if (c.getName().equals("reg_passwd")) passwd = c.getValue();
+            if (c.getName().equals("reg_name")) name = URLDecoder.decode(c.getValue(), "UTF-8");
+            else if (c.getName().equals("reg_surname")) surname = URLDecoder.decode(c.getValue(), "UTF-8");
+            else if (c.getName().equals("reg_address")) address = URLDecoder.decode(c.getValue(), "UTF-8");
+            else if (c.getName().equals("reg_phone")) phone = URLDecoder.decode(c.getValue(), "UTF-8");
+            else if (c.getName().equals("reg_login")) login = URLDecoder.decode(c.getValue(), "UTF-8");
+            else if (c.getName().equals("reg_passwd")) passwd = URLDecoder.decode(c.getValue(), "UTF-8");
         }
     }
     %>

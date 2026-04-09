@@ -1,7 +1,9 @@
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.net.URLDecoder;
 import activities.db.*;
+
 
 public class ConfirmRegisterServlet extends HttpServlet {
 
@@ -10,7 +12,11 @@ public class ConfirmRegisterServlet extends HttpServlet {
         if (cookies != null) {
             for (int i = 0; i < cookies.length; i++) {
                 if (cookies[i].getName().equals(cookieName)) {
-                    return cookies[i].getValue();
+                    try {
+                        return URLDecoder.decode(cookies[i].getValue(), "UTF-8");
+                    } catch (Exception e) {
+                        return cookies[i].getValue();
+                    }
                 }
             }
         }

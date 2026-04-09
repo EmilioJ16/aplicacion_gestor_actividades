@@ -1,10 +1,14 @@
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import java.net.URLEncoder;
 
 public class RegisterServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
 
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
@@ -39,14 +43,13 @@ public class RegisterServlet extends HttpServlet {
         c5.setMaxAge(1800);
         c6.setMaxAge(1800);
 
-        res.addCookie(c1);
-        res.addCookie(c2);
-        res.addCookie(c3);
-        res.addCookie(c4);
-        res.addCookie(c5);
-        res.addCookie(c6);
+        res.addCookie(new Cookie("reg_name", URLEncoder.encode(name, "UTF-8")));
+        res.addCookie(new Cookie("reg_surname", URLEncoder.encode(surname, "UTF-8")));
+        res.addCookie(new Cookie("reg_address", URLEncoder.encode(address, "UTF-8")));
+        res.addCookie(new Cookie("reg_phone", URLEncoder.encode(phone, "UTF-8")));
+        res.addCookie(new Cookie("reg_login", URLEncoder.encode(login, "UTF-8")));
+        res.addCookie(new Cookie("reg_passwd", URLEncoder.encode(passwd, "UTF-8")));
 
-        // También los paso como atributos para mostrarlos ya en esta petición
         req.setAttribute("name", name);
         req.setAttribute("surname", surname);
         req.setAttribute("address", address);
