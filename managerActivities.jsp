@@ -119,5 +119,6 @@
         <a href="logout">Logout</a>
     </div>
 </div>
+<%@ include file="copyright.include" %>
 </body>
 </html>
