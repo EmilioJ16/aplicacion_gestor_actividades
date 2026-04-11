@@ -5,8 +5,10 @@ import activities.db.DBInteraction;
 
 public class EditActivityServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
 
         HttpSession session = req.getSession(false);
         if (session == null || session.getAttribute("manager") == null) {
@@ -46,8 +48,8 @@ public class EditActivityServlet extends HttpServlet {
             int total = Integer.parseInt(totalStr);
             int occupied = Integer.parseInt(occupiedStr);
 
-            if (occupied > total) {
-                req.setAttribute("error", "Occupied places cannot be greater than total places.");
+            if (occupied > total || id <= 0 || cost < 0 || total < 0 || occupied < 0) {
+                req.setAttribute("error", "Invalid input values.");
                 RequestDispatcher rd = req.getRequestDispatcher("editActivity.jsp");
                 rd.forward(req, res);
                 return;

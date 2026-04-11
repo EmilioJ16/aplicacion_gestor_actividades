@@ -17,24 +17,22 @@ public class RegisterServlet extends HttpServlet {
         String login = req.getParameter("login");
         String passwd = req.getParameter("passwd");
 
-        // Validación mínima
-        if (name == null || name.equals("") ||
-            surname == null || surname.equals("") ||
-            address == null || address.equals("") ||
-            phone == null || phone.equals("") ||
-            login == null || login.equals("") ||
-            passwd == null || passwd.equals("")) {
+        if (name == null || name.trim().equals("") ||
+            surname == null || surname.trim().equals("") ||
+            address == null || address.trim().equals("") ||
+            phone == null || phone.trim().equals("") ||
+            login == null || login.trim().equals("") ||
+            passwd == null || passwd.trim().equals("")) {
 
             throw new ServletException("All registration fields must be filled in");
         }
 
-        // Guardar en varias cookies
-        Cookie c1 = new Cookie("reg_name", name);
-        Cookie c2 = new Cookie("reg_surname", surname);
-        Cookie c3 = new Cookie("reg_address", address);
-        Cookie c4 = new Cookie("reg_phone", phone);
-        Cookie c5 = new Cookie("reg_login", login);
-        Cookie c6 = new Cookie("reg_passwd", passwd);
+        Cookie c1 = new Cookie("reg_name", URLEncoder.encode(name, "UTF-8"));
+        Cookie c2 = new Cookie("reg_surname", URLEncoder.encode(surname, "UTF-8"));
+        Cookie c3 = new Cookie("reg_address", URLEncoder.encode(address, "UTF-8"));
+        Cookie c4 = new Cookie("reg_phone", URLEncoder.encode(phone, "UTF-8"));
+        Cookie c5 = new Cookie("reg_login", URLEncoder.encode(login, "UTF-8"));
+        Cookie c6 = new Cookie("reg_passwd", URLEncoder.encode(passwd, "UTF-8"));
 
         c1.setMaxAge(1800);
         c2.setMaxAge(1800);
@@ -43,12 +41,12 @@ public class RegisterServlet extends HttpServlet {
         c5.setMaxAge(1800);
         c6.setMaxAge(1800);
 
-        res.addCookie(new Cookie("reg_name", URLEncoder.encode(name, "UTF-8")));
-        res.addCookie(new Cookie("reg_surname", URLEncoder.encode(surname, "UTF-8")));
-        res.addCookie(new Cookie("reg_address", URLEncoder.encode(address, "UTF-8")));
-        res.addCookie(new Cookie("reg_phone", URLEncoder.encode(phone, "UTF-8")));
-        res.addCookie(new Cookie("reg_login", URLEncoder.encode(login, "UTF-8")));
-        res.addCookie(new Cookie("reg_passwd", URLEncoder.encode(passwd, "UTF-8")));
+        res.addCookie(c1);
+        res.addCookie(c2);
+        res.addCookie(c3);
+        res.addCookie(c4);
+        res.addCookie(c5);
+        res.addCookie(c6);
 
         req.setAttribute("name", name);
         req.setAttribute("surname", surname);

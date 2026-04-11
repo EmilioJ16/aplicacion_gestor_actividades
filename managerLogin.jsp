@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="activities.util.HtmlUtil" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -63,7 +64,7 @@
         String error = (String) request.getAttribute("error");
         if (error != null) {
     %>
-        <p class="error"><%= error %></p>
+        <p class="error"><%= HtmlUtil.e(error) %></p>
     <%
         }
     %>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="activities.util.HtmlUtil" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -71,12 +72,12 @@
     <h1>Confirm Registration Data</h1>
 
     <table border="1">
-    <tr><td><b>Name</b></td><td><%= request.getAttribute("name") %></td></tr>
-    <tr><td><b>Surname</b></td><td><%= request.getAttribute("surname") %></td></tr>
-    <tr><td><b>Address</b></td><td><%= request.getAttribute("address") %></td></tr>
-    <tr><td><b>Phone</b></td><td><%= request.getAttribute("phone") %></td></tr>
-    <tr><td><b>Login</b></td><td><%= request.getAttribute("login") %></td></tr>
-    <tr><td><b>Password</b></td><td><%= request.getAttribute("passwd") %></td></tr>
+    <tr><td><b>Name</b></td><td><%= HtmlUtil.e((String) request.getAttribute("name")) %></td></tr>
+    <tr><td><b>Surname</b></td><td><%= HtmlUtil.e((String) request.getAttribute("surname")) %></td></tr>
+    <tr><td><b>Address</b></td><td><%= HtmlUtil.e((String) request.getAttribute("address")) %></td></tr>
+    <tr><td><b>Phone</b></td><td><%= HtmlUtil.e((String) request.getAttribute("phone")) %></td></tr>
+    <tr><td><b>Login</b></td><td><%= HtmlUtil.e((String) request.getAttribute("login")) %></td></tr>
+    <tr><td><b>Password</b></td><td><%= HtmlUtil.e((String) request.getAttribute("passwd")) %></td></tr>
     </table>
 
     <p>Are these data correct?</p>

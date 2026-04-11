@@ -23,18 +23,20 @@ public class ConfirmRegisterServlet extends HttpServlet {
         return "";
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
+        
         String answer = req.getParameter("answer");
 
-        if (answer.equals("no")) {
+        if ("no".equals(answer)) {
             RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
             rd.forward(req, res);
             return;
         }
 
-        if (answer.equals("yes")) {
+        if ("yes".equals(answer)) {
             String name = getCookieValue(req, "reg_name");
             String surname = getCookieValue(req, "reg_surname");
             String address = getCookieValue(req, "reg_address");
@@ -54,7 +56,10 @@ public class ConfirmRegisterServlet extends HttpServlet {
                 return;
             }
             catch (Exception e) {
-                throw new ServletException(e);
+                req.setAttribute("error", "Error completing registration: " + e.getMessage());
+                RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
+                rd.forward(req, res);
+                return;
             }
             finally {
                 try {

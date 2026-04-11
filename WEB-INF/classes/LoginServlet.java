@@ -5,8 +5,10 @@ import activities.db.*;
 
 public class LoginServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
 
         String login = req.getParameter("login");
         String passwd = req.getParameter("passwd");
@@ -24,6 +26,13 @@ public class LoginServlet extends HttpServlet {
             db = new DBInteraction();
 
             System.out.println("DEBUG login recibido: " + login);
+
+            if (login == null || login.trim().equals("") || passwd == null || passwd.trim().equals("")) {
+                req.setAttribute("error", "Login and password are required.");
+                RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+                rd.forward(req, res);
+            return;
+            }
 
             boolean ok = db.authentication(login, passwd);
             System.out.println("DEBUG authentication = " + ok);

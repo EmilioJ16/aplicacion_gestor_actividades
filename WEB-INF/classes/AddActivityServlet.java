@@ -5,8 +5,10 @@ import activities.db.DBInteraction;
 
 public class AddActivityServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
 
         HttpSession session = req.getSession(false);
         if (session == null || session.getAttribute("manager") == null) {
@@ -43,8 +45,15 @@ public class AddActivityServlet extends HttpServlet {
             int total = Integer.parseInt(totalStr);
             int occupied = Integer.parseInt(occupiedStr);
 
-            if (occupied > total) {
-                req.setAttribute("error", "Occupied places cannot be greater than total places.");
+            if (total < 0 || occupied < 0) {
+                req.setAttribute("error", "Total places and occupied places must be zero or positive.");
+                RequestDispatcher rd = req.getRequestDispatcher("addActivity.jsp");
+                rd.forward(req, res);
+                return;
+            }
+
+            if (cost < 0) {
+                req.setAttribute("error", "Cost must be zero or positive.");
                 RequestDispatcher rd = req.getRequestDispatcher("addActivity.jsp");
                 rd.forward(req, res);
                 return;

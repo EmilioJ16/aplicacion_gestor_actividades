@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="activities.util.HtmlUtil" %>
 <%
     HttpSession ses = request.getSession(false);
     if (ses == null || ses.getAttribute("userLogin") == null) {
@@ -66,7 +67,7 @@
 
 <div class="container">
     <div class="topbar">
-        Logged user: <b><%= userLogin %></b> |
+        Logged user: <b><%= HtmlUtil.e(userLogin) %></b> |
         <a href="logout">Logout</a>
     </div>
 

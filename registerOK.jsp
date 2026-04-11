@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="activities.util.HtmlUtil" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -35,10 +36,11 @@
     <h1>Registration completed successfully</h1>
 
     <p>Your user has been stored in the database.</p>
-
+    
     <p>
         You can now log in with your login:
-        <b><%= request.getAttribute("login") %></b>
+        
+        <b><%= HtmlUtil.e((String) request.getAttribute("login")) %></b>
     </p>
 
     <p>Please go to the login page to access the application.</p>

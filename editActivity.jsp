@@ -8,6 +8,8 @@
 
     String error = (String) request.getAttribute("error");
 %>
+<%@ page import="activities.util.HtmlUtil" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -92,7 +94,7 @@
     <%
         if (error != null) {
     %>
-        <p class="error"><%= error %></p>
+        <p class="error"><%= HtmlUtil.e(error) %></p>
     <%
         }
     %>

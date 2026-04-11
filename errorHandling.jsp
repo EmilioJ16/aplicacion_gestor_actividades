@@ -5,8 +5,6 @@
 <html>
   <body bgcolor="white">
 
-    <%@ include file="banner.include" %>
-
     <table>
       <tr>
         <td></td>

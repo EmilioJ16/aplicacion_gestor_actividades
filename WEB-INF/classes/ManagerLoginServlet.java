@@ -6,8 +6,10 @@ public class ManagerLoginServlet extends HttpServlet {
 
     private static final String MANAGER_PASSWORD = "admin123";
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
 
         String password = req.getParameter("password");
 

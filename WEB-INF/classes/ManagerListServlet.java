@@ -8,9 +8,11 @@ import activities.db.Activity;
 
 public class ManagerListServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws IOException, ServletException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
+        req.setCharacterEncoding("UTF-8");
+        res.setContentType("text/html; charset=UTF-8");
+        
         HttpSession session = req.getSession(false);
 
         if (session == null || session.getAttribute("manager") == null) {

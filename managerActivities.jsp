@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="activities.db.Activity" %>
+<%@ page import="activities.util.HtmlUtil" %>
 
 <%
     HttpSession ses = request.getSession(false);
@@ -95,14 +96,14 @@
                 Activity a = (Activity) activities.get(i);
         %>
         <tr>
-            <td><%= a.getid() %></td>
-            <td><%= a.getname() %></td>
-            <td><%= a.getdescription() %></td>
-            <td><%= a.getinitial() %></td>
-            <td><%= a.getcost() %></td>
-            <td><%= a.getpavname() %></td>
-            <td><%= a.gettotal() %></td>
-            <td><%= a.getoccupied() %></td>
+            <td><%= HtmlUtil.e(String.valueOf(a.getid())) %></td>
+            <td><%= HtmlUtil.e(a.getname()) %></td>
+            <td><%= HtmlUtil.e(a.getdescription()) %></td>
+            <td><%= HtmlUtil.e(a.getinitial()) %></td>
+            <td><%= HtmlUtil.e(String.valueOf(a.getcost())) %></td>
+            <td><%= HtmlUtil.e(a.getpavname()) %></td>
+            <td><%= HtmlUtil.e(String.valueOf(a.gettotal())) %></td>
+            <td><%= HtmlUtil.e(String.valueOf(a.getoccupied())) %></td>
         </tr>
         <%
             }

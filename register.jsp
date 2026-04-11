@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page import="activities.util.HtmlUtil" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -79,22 +80,22 @@
 
     <form action="register" method="POST">
         Name:
-        <input type="text" name="name" size="30" value="<%=name%>"><br><br>
+        <input type="text" name="name" size="30" value="<%= HtmlUtil.e(name) %>"><br><br>
 
         Surname:
-        <input type="text" name="surname" size="30" value="<%=surname%>"><br><br>
+        <input type="text" name="surname" size="30" value="<%= HtmlUtil.e(surname) %>"><br><br>
 
         Address:
-        <input type="text" name="address" size="30" value="<%=address%>"><br><br>
+        <input type="text" name="address" size="30" value="<%= HtmlUtil.e(address) %>"><br><br>
 
         Phone:
-        <input type="text" name="phone" size="30" value="<%=phone%>"><br><br>
+        <input type="text" name="phone" size="30" value="<%= HtmlUtil.e(phone) %>"><br><br>
 
         Login:
-        <input type="text" name="login" size="30" value="<%=login%>"><br><br>
+        <input type="text" name="login" size="30" value="<%= HtmlUtil.e(login) %>"><br><br>
 
         Password:
-        <input type="password" name="passwd" size="30" value="<%=passwd%>"><br><br>
+        <input type="password" name="passwd" size="30" value="<%= HtmlUtil.e(passwd) %>"><br><br>
 
         <input type="submit" value="Send registration data">
         <input type="reset" value="Clear">

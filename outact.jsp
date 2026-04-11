@@ -1,4 +1,11 @@
-<tr><td><%=request.getParameter("id")%></td><td><%=request.getParameter("name")%></td>
-<td><%= request.getParameter("description")%></td> <td> <%=request.getParameter("initial")%></td>
-<td><%= request.getParameter("cost")%></td><td><%= request.getParameter("pavname")%></td>
-<td><%= request.getParameter("total")%></td><td><%= request.getParameter("occupied")%></td></tr>
+<%@ page import="activities.util.HtmlUtil" %>
+<tr>
+    <td><%= request.getAttribute("id") %></td>
+    <td><%= HtmlUtil.e((String) request.getAttribute("name")) %></td>
+    <td><%= HtmlUtil.e((String) request.getAttribute("description")) %></td>
+    <td><%= HtmlUtil.e((String) request.getAttribute("initial")) %></td>
+    <td><%= request.getAttribute("cost") %></td>
+    <td><%= HtmlUtil.e((String) request.getAttribute("pavname")) %></td>
+    <td><%= request.getAttribute("total") %></td>
+    <td><%= request.getAttribute("occupied") %></td>
+</tr>
