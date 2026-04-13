@@ -78,6 +78,15 @@
     }
     %>
 
+    <%
+    String error = (String) request.getAttribute("error");
+    if (error != null) {
+    %>
+        <p style="color:red; font-weight:bold;"><%= HtmlUtil.e(error) %></p>
+    <%
+    }
+    %>
+
     <form action="register" method="POST">
         Name:
         <input type="text" name="name" size="30" value="<%= HtmlUtil.e(name) %>"><br><br>

@@ -64,7 +64,7 @@
         String error = (String) request.getAttribute("error");
         if (error != null) {
     %>
-        <p class="error"><%= HtmlUtil.e(error) %></p>
+        <p style="color:red; font-weight:bold;"><%= HtmlUtil.e(error) %></p>
     <%
         }
     %>

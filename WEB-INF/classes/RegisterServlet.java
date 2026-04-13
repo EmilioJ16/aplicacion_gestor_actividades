@@ -24,7 +24,10 @@ public class RegisterServlet extends HttpServlet {
             login == null || login.trim().equals("") ||
             passwd == null || passwd.trim().equals("")) {
 
-            throw new ServletException("All registration fields must be filled in");
+            req.setAttribute("error", "Invalid registration data.");
+            RequestDispatcher rd = req.getRequestDispatcher("register.jsp");
+            rd.forward(req, res);
+            return;
         }
 
         Cookie c1 = new Cookie("reg_name", URLEncoder.encode(name, "UTF-8"));
