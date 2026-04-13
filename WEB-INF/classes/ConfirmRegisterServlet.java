@@ -49,6 +49,17 @@ public class ConfirmRegisterServlet extends HttpServlet {
                 db = new DBInteraction();
                 db.addusr(login, passwd, name, surname, address, phone);
 
+                // Clear registration cookies
+                Cookie[] cookies = req.getCookies();
+                if (cookies != null) {
+                    for (int i = 0; i < cookies.length; i++) {
+                        if (cookies[i].getName().startsWith("reg_")) {
+                            cookies[i].setMaxAge(0); // Delete cookie
+                            res.addCookie(cookies[i]);
+                        }
+                    }
+                }
+
                 req.setAttribute("login", login);
 
                 RequestDispatcher rd = req.getRequestDispatcher("registerOK.jsp");
