@@ -44,6 +44,9 @@ public class list extends HttpServlet {
                 float price = Float.parseFloat(text);
                 data = db.listactprice(price);
             }
+            else if ("free_pav".equals(type)) {
+                data = db.listactfreepav(text);
+            }
             else if ("text".equals(type)) {
                 data = db.listacttext(text);
             }
@@ -51,7 +54,7 @@ public class list extends HttpServlet {
                 data = db.listactname(text);
             }
             else {
-                data = db.listactpav(text);
+                data = new ArrayList();
             }
 
             if ("all_pavillions".equals(type)) {

@@ -257,9 +257,10 @@ public class DBInteraction {
     // List activities with cost <= price
     public ArrayList listactprice(float price) throws Exception {
         String sql = "SELECT ACTIVITIES.* " +
-                     "FROM ACTIVITIES, PAVILLIONS " +
-                     "WHERE ACTIVITIES.COST <= ? " +
-                     "AND ACTIVITIES.PAVILLION_NAME = PAVILLIONS.PAVILLION";
+                    "FROM ACTIVITIES, PAVILLIONS " +
+                    "WHERE ACTIVITIES.COST <= ? " +
+                    "AND ACTIVITIES.TOTAL_PLACES > ACTIVITIES.OCCUPIED_PLACES " +
+                    "AND ACTIVITIES.PAVILLION_NAME = PAVILLIONS.PAVILLION";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setFloat(1, price);
@@ -460,5 +461,23 @@ public class DBInteraction {
         }
 
         return data;
+    }
+
+    public ArrayList listactfreepav(String namepav) throws Exception {
+        String sql = "SELECT ACTIVITIES.* " +
+                    "FROM ACTIVITIES, PAVILLIONS " +
+                    "WHERE ACTIVITIES.PAVILLION_NAME = ? " +
+                    "AND ACTIVITIES.TOTAL_PLACES > ACTIVITIES.OCCUPIED_PLACES " +
+                    "AND ACTIVITIES.PAVILLION_NAME = PAVILLIONS.PAVILLION";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, namepav);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return readActivities(rs);
+            }
+        } catch (SQLException e) {
+            throw new Exception("Database error while listing activities with free places in a pavillion.", e);
+        }
     }
 }

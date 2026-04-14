@@ -79,6 +79,7 @@
             <option value="all_pavillions">List all pavillions</option>
             <option value="free_places">List activities for which there are currently free places</option>
             <option value="cost">List activities for which there are free places costing less than a certain amount</option>
+            <option value="free_pav">List activities with free places in a certain pavillion</option>
             <option value="text">List activities whose name or description contains a text</option>
             <option value="activity">Print all information about one activity</option>
         </select>
