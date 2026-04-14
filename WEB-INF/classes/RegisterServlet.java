@@ -37,6 +37,13 @@ public class RegisterServlet extends HttpServlet {
         Cookie c5 = new Cookie("reg_login", URLEncoder.encode(login, "UTF-8"));
         Cookie c6 = new Cookie("reg_passwd", URLEncoder.encode(passwd, "UTF-8"));
 
+        c1.setPath("/aplicacion_gestor_actividades");
+        c2.setPath("/aplicacion_gestor_actividades");
+        c3.setPath("/aplicacion_gestor_actividades");
+        c4.setPath("/aplicacion_gestor_actividades");
+        c5.setPath("/aplicacion_gestor_actividades");
+        c6.setPath("/aplicacion_gestor_actividades");
+
         c1.setMaxAge(1800);
         c2.setMaxAge(1800);
         c3.setMaxAge(1800);

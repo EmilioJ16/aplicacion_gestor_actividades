@@ -7,12 +7,24 @@ import activities.db.*;
 public class list extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        HttpSession ses = req.getSession(false);
+        if (ses == null || ses.getAttribute("userLogin") == null) {
+            res.sendRedirect("index.html");
+            return;
+        }
         res.setContentType("text/html; charset=UTF-8");
         PrintWriter out = res.getWriter();
         out.println("GET Request. No Form Data Posted");
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        
+        HttpSession ses = req.getSession(false);
+        if (ses == null || ses.getAttribute("userLogin") == null) {
+            res.sendRedirect("index.html");
+            return;
+        }
+
         req.setCharacterEncoding("UTF-8");
         res.setContentType("text/html; charset=UTF-8");
 

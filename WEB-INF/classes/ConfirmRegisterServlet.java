@@ -54,6 +54,7 @@ public class ConfirmRegisterServlet extends HttpServlet {
                 if (cookies != null) {
                     for (int i = 0; i < cookies.length; i++) {
                         if (cookies[i].getName().startsWith("reg_")) {
+                            cookies[i].setPath("/aplicacion_gestor_actividades");
                             cookies[i].setMaxAge(0); // Delete cookie
                             res.addCookie(cookies[i]);
                         }

@@ -110,4 +110,15 @@
     <servlet-name>EditActivityServlet</servlet-name>
     <url-pattern>/editActivity</url-pattern>
 </servlet-mapping>
+
+<servlet>
+    <servlet-name>CancelRegisterServlet</servlet-name>
+    <servlet-class>CancelRegisterServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>CancelRegisterServlet</servlet-name>
+    <url-pattern>/cancelRegister</url-pattern>
+</servlet-mapping>
+
 </web-app>

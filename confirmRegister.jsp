@@ -72,12 +72,12 @@
     <h1>Confirm Registration Data</h1>
 
     <table border="1">
-    <tr><td><b>Name</b></td><td><%= HtmlUtil.e((String) request.getAttribute("name")) %></td></tr>
-    <tr><td><b>Surname</b></td><td><%= HtmlUtil.e((String) request.getAttribute("surname")) %></td></tr>
-    <tr><td><b>Address</b></td><td><%= HtmlUtil.e((String) request.getAttribute("address")) %></td></tr>
-    <tr><td><b>Phone</b></td><td><%= HtmlUtil.e((String) request.getAttribute("phone")) %></td></tr>
-    <tr><td><b>Login</b></td><td><%= HtmlUtil.e((String) request.getAttribute("login")) %></td></tr>
-    <tr><td><b>Password</b></td><td><%= HtmlUtil.e((String) request.getAttribute("passwd")) %></td></tr>
+        <tr><td><b>Name</b></td><td><%= HtmlUtil.e((String) request.getAttribute("name")) %></td></tr>
+        <tr><td><b>Surname</b></td><td><%= HtmlUtil.e((String) request.getAttribute("surname")) %></td></tr>
+        <tr><td><b>Address</b></td><td><%= HtmlUtil.e((String) request.getAttribute("address")) %></td></tr>
+        <tr><td><b>Phone</b></td><td><%= HtmlUtil.e((String) request.getAttribute("phone")) %></td></tr>
+        <tr><td><b>Login</b></td><td><%= HtmlUtil.e((String) request.getAttribute("login")) %></td></tr>
+        <tr><td><b>Password</b></td><td><%= HtmlUtil.e((String) request.getAttribute("passwd")) %></td></tr>
     </table>
 
     <p>Are these data correct?</p>

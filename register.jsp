@@ -111,7 +111,7 @@
     </form>
 
     <p>
-    <a href="index.html">Return to initial page</a>
+    <a href="cancelRegister">Return to initial page</a>
     </p>
 </div>
 </body>
